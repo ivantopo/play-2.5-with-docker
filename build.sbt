@@ -7,6 +7,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala, JavaAppPackaging
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
+  "io.kamon" %% "kamon-play-25" % "0.6.3",
+  "io.kamon" %% "kamon-log-reporter" % "0.6.3",
   jdbc,
   cache,
   ws,
@@ -16,3 +18,5 @@ libraryDependencies ++= Seq(
 dockerExposedPorts in Docker := Seq(9000, 9443)
 
 javaAgents += "org.aspectj" % "aspectjweaver" % "1.8.10"
+
+javaOptions in Universal += "-Dorg.aspectj.tracing.factory=default"
